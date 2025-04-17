@@ -1,0 +1,41 @@
+@mobile: ~'(max-width: 767px)';
+@tablet: ~'(max-width: 1024px)';
+@desktop: ~'(min-width: 1025px)';
+
+// Media query
+.mobile(@rules) {
+  @media @mobile {
+    @rules();
+  }
+}
+
+.tablet(@rules) {
+  @media @tablet {
+    @rules();
+  }
+}
+
+.desktop(@rules) {
+  @media @desktop {
+    @rules();
+  }
+}
+
+// Utility Classes
+.generate-margins(@i: 0) when (@i =< 5) {
+  .mb-@{i} {
+    margin-bottom: unit(@i, px);
+  }
+  .ml-@{i} {
+    margin-left: unit(@i, px);
+  }
+  .mr-@{i} {
+    margin-right: unit(@i, px);
+  }
+  .mt-@{i} {
+    margin-top: unit(@i, px);
+  }
+
+  .generate-margins(@i + 1);
+}
+.generate-margins();
