@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
-import Saved from '@/views/Saved.vue';
+import Browse from '@/views/Browse.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: Home,
   },
   {
-    path: '/saved',
-    name: 'saved',
-    component: Saved,
+    path: '/browse',
+    name: 'browse',
+    component: Browse,
   },
 ];
 

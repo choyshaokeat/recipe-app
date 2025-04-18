@@ -1,16 +1,24 @@
 <template>
   <div>
     <div class="home_container">
-      <!-- Saved recipe -->
+      <!-- Public recipe -->
       <div class="home_container--inner">
-        <h3 class="title">Saved Recipes</h3>
+        <h3 class="title">BROWSE</h3>
         <RecipeFilter
-          :data="localRecipe"
+          :data="allRecipes"
           @update:filtered="filteredRecipes = $event"
         />
+        <el-skeleton v-if="allRecipes.length <= 0" :rows="5" animated />
         <div class="recipe_container">
-          <div v-if="filteredRecipes.length <= 0">No item found</div>
-          <div v-else v-for="(recipe, i) in filteredRecipes" :key="i">
+          <div v-if="allRecipes > 0 && filteredRecipes.length <= 0">
+            No item found
+          </div>
+          <div
+            v-else
+            v-for="(recipe, i) in filteredRecipes"
+            :key="i"
+            class="recipe_card"
+          >
             <RecipeCard
               :recipe="recipe"
               :selected="
@@ -26,7 +34,7 @@
       <!-- Recipe detail -->
       <!-- desktop -->
       <div v-if="!isMobile" class="home_container--inner">
-        <h3 class="title">Details</h3>
+        <h3 class="title">DETAILS</h3>
         <RecipeDetail v-if="selectedRecipe" :recipe="selectedRecipe" />
         <div v-else>No recipe selected</div>
       </div>
@@ -39,7 +47,7 @@
         :withHeader="false"
       >
         <div :class="['header_container', { mobile_dialog: isMobile }]">
-          <h3 class="title">Details</h3>
+          <h3 class="title">DETAILS</h3>
           <el-icon class="close_icon" @click="drawerOpen = false">
             <CloseBold />
           </el-icon>
@@ -57,14 +65,11 @@ import RecipeDetail from '@/components/RecipeDetail.vue';
 import RecipeFilter from '@/components/RecipeFilter.vue';
 import { Recipe } from '@/types/recipe';
 import { storeToRefs } from 'pinia';
-import { useRecipeStore } from '@/stores/recipeStore';
 import { useDeviceStore } from '@/stores/deviceStore';
 
 const deviceStore = useDeviceStore();
 const { isMobile } = storeToRefs(deviceStore);
-
-const recipeStore = useRecipeStore();
-const { localRecipe } = storeToRefs(recipeStore);
+const allRecipes = ref<Recipe[]>([]);
 const filteredRecipes = ref<Recipe[]>([]);
 const selectedRecipe = ref<Recipe | null>(null);
 let drawerOpen = ref<boolean>(false);
@@ -75,6 +80,19 @@ watch(
     if (!newVal) selectedRecipe.value = null;
   }
 );
+
+onMounted(async () => {
+  try {
+    const response = await fetch(
+      'https://raw.githubusercontent.com/micahcochran/json-cookbook/refs/heads/main/cookbook-100.json'
+    );
+    if (!response.ok) throw new Error('Failed to fetch recipes');
+    const data: Recipe[] = await response.json();
+    allRecipes.value = data;
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 const toArray = (data: string | string[]) => {
   return Array.isArray(data) ? data : [data];
@@ -106,7 +124,6 @@ const selectRecipe = (data: Recipe) => {
   align-items: center;
 
   .close_icon {
-    padding-top: 8px;
     color: @color-primary;
   }
 }
@@ -128,18 +145,20 @@ const selectRecipe = (data: Recipe) => {
 }
 
 .recipe_container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-bottom: 24px;
 }
 
-/* Tablet */
-.tablet({
-  .recipe_container {
-    grid-template-columns: 1fr;
-  }
-});
+.recipe_card {
+  flex: 1 1 calc(50% - 8px);
+  min-width: 280px;
+}
+
+:deep(.el-skeleton.is-animated .el-skeleton__item) {
+  background: @color-background-light;
+}
 
 /* Mobile */
 .mobile({
@@ -151,11 +170,6 @@ const selectRecipe = (data: Recipe) => {
       padding-right: 0;
       height: auto;
     }
-  }
-
-  .recipe_container {
-    gap: 12px;
-    margin-bottom: 24px;
   }
 });
 </style>
