@@ -91,8 +91,6 @@ const formatPrepTime = (text: string | null) => {
 };
 
 const handleSave = (recipe: Recipe) => {
-  console.log(recipeStore.localRecipe);
-
   if (isSaved.value) {
     recipeStore.removeLocalRecipe(recipe); // remove recipe from saved recipe store
     ElMessage({

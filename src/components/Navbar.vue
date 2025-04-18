@@ -3,13 +3,13 @@
     <div class="logo_container">
       <div class="logo_text mb-3">EncoreFoodie</div>
     </div>
-    <el-menu-item index="/">
+    <el-menu-item index="/browse">
+      <el-icon><Search /></el-icon>
+      <template #title>Browse</template>
+    </el-menu-item>
+    <el-menu-item index="/home">
       <el-icon><HomeFilled /></el-icon>
       <template #title>Home</template>
-    </el-menu-item>
-    <el-menu-item index="/saved">
-      <el-icon><Briefcase /></el-icon>
-      <template #title>Saved</template>
     </el-menu-item>
   </el-menu>
 </template>

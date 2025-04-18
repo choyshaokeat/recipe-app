@@ -97,7 +97,6 @@ const cuisineOptions = computed(() => {
 /* Filter function */
 const filterData = () => {
   const { category, cuisine, keyword, ingredient } = filters.value;
-  console.log('run', props.data);
 
   /* If no filter is selected */
   if (category == '' && cuisine == '' && keyword == '' && ingredient == '')
@@ -114,7 +113,12 @@ const filterData = () => {
       : true;
 
     const matchKeyword = keyword
-      ? item.keywords?.toLowerCase().includes(keyword.toLowerCase())
+      ? item.keywords
+          ?.toLowerCase()
+          .includes(keyword.toLowerCase()) /* check keywords */ ||
+        item.name
+          ?.toLowerCase()
+          .includes(keyword.toLowerCase()) /* check recipe name */
       : true;
 
     const matchIngredient = ingredient
@@ -155,13 +159,13 @@ watch(
     }
 
     .el-input-group__prepend {
-      border-right: 2px solid @color-primary;
+      border-right: 1.5px solid @color-primary;
     }
   }
 
   .filter {
     border-radius: 10px;
-    border: 2px solid @color-primary;
+    border: 1.5px solid @color-primary;
   }
 }
 </style>

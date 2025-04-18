@@ -81,11 +81,23 @@ onBeforeUnmount(() => {
 
 .menu_button {
   position: absolute;
-  right: 12px;
-  bottom: 12px;
-  background-color: @color-white;
+  right: 0;
+  bottom: 16px;
+  background-color: @color-primary;
   color: @color-background-base;
   border: none;
+
+  &.el-button {
+    width: 60px;
+    height: 60px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: rgba(@color-primary, 0.6) 0 0 10px;
+  }
+
+  :deep(.el-icon) {
+    font-size: 18px;
+  }
 }
 
 ::v-deep .menu_drawer {
