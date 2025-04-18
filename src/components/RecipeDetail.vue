@@ -98,12 +98,16 @@ const handleSave = (recipe: Recipe) => {
     ElMessage({
       message: 'Recipe removed successfully',
       type: 'success',
+      customClass: 'custom_message',
+      showClose: true,
     });
   } else {
     recipeStore.addLocalRecipe(recipe); // add recipe to saved recipe store
     ElMessage({
       message: 'Recipe saved sucessfully',
       type: 'success',
+      customClass: 'custom_message',
+      showClose: true,
     });
   }
 };

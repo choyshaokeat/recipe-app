@@ -46,9 +46,17 @@ const formatPrepTime = (text: string | null) => {
   cursor: pointer;
   height: 170px;
 
-  &.active {
-    background: @color-black;
+  &:hover {
+    .left_content {
+      background: linear-gradient(
+        133deg,
+        @color-background-lighter 0%,
+        rgba(11, 11, 11, 1) 80%
+      );
+    }
+  }
 
+  &.active {
     .left_content {
       color: @color-text-primary;
       background: linear-gradient(

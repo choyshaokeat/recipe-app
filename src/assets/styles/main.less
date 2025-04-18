@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
+// Variables
+@font-main: 'Reddit Sans', sans-serif;
+
+:root {
+  font-family: @font-main;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #eee;
+  background-color: #000;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Scrollbar styles */
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.custom_message {
+  border-radius: 24px !important;
+  padding: 12px 20px !important;
+}

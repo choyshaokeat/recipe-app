@@ -11,6 +11,7 @@ export default defineConfig({
         javascriptEnabled: true,
         additionalData: `
           @import "@/assets/styles/theme.less";
+          @import "@/assets/styles/reset.less";
           @import "@/assets/styles/mixin.less";
         `,
       },

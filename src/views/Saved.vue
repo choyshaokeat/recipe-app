@@ -40,9 +40,9 @@
       >
         <div :class="['header_container', { mobile_dialog: isMobile }]">
           <h3 class="title">Details</h3>
-          <el-icon class="close_icon" @click="drawerOpen = false"
-            ><CloseBold
-          /></el-icon>
+          <el-icon class="close_icon" @click="drawerOpen = false">
+            <CloseBold />
+          </el-icon>
         </div>
         <RecipeDetail :recipe="selectedRecipe" />
       </el-drawer>

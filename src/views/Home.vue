@@ -8,9 +8,11 @@
           :data="allRecipes"
           @update:filtered="filteredRecipes = $event"
         />
+        <el-skeleton v-if="allRecipes.length <= 0" :rows="5" animated />
         <div class="recipe_container">
-          <el-skeleton v-if="allRecipes.length <= 0" :rows="5" animated />
-          <div v-else-if="filteredRecipes.length <= 0">No item found</div>
+          <div v-if="allRecipes > 0 && filteredRecipes.length <= 0">
+            No item found
+          </div>
           <div v-else v-for="(recipe, i) in filteredRecipes" :key="i">
             <RecipeCard
               :recipe="recipe"
@@ -41,9 +43,9 @@
       >
         <div :class="['header_container', { mobile_dialog: isMobile }]">
           <h3 class="title">Details</h3>
-          <el-icon class="close_icon" @click="drawerOpen = false"
-            ><CloseBold
-          /></el-icon>
+          <el-icon class="close_icon" @click="drawerOpen = false">
+            <CloseBold />
+          </el-icon>
         </div>
         <RecipeDetail :recipe="selectedRecipe" />
       </el-drawer>
@@ -144,6 +146,10 @@ const selectRecipe = (data: Recipe) => {
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
   margin-bottom: 24px;
+}
+
+:deep(.el-skeleton.is-animated .el-skeleton__item) {
+  background: @color-background-light;
 }
 
 /* Tablet */
