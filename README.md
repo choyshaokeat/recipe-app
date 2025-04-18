@@ -1,5 +1,38 @@
-# Vue 3 + TypeScript + Vite
+# Recipe App (EncoreFoodie)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Build using Vue 3 + TypeScript + Vite
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Screenshot (Desktop)
+
+Browse
+![Web](./screenshots/web_1.jpg)
+
+Recipe details
+![Web](./screenshots/web_2.jpg)
+
+Home (Recipe saved to local)
+![Web](./screenshots/web_3.jpg)
+
+Filter result
+![Web](./screenshots/web_4.jpg)
+
+## Screenshot (Tablet)
+
+Tablet responsive view
+![Tablet](./screenshots/tablet_1.jpg)
+
+## Screenshot (Mobile)
+
+<div>
+  <div>
+  <div>Browse</div>
+    <img src="./screenshots/mobile_1.jpg" alt="Home" width="200"/>
+  </div>
+  <div>Menu side bar</div>
+    <img src="./screenshots/mobile_2.jpg" alt="Home" width="200"/>
+  </div>
+  <div>Detail slider from bottom (full screen scrollable)</div>
+    <img src="./screenshots/mobile_3.jpg" alt="Home" width="200"/>
+    <img src="./screenshots/mobile_4.jpg" alt="Home" width="200"/>
+  </div>
+</div>
